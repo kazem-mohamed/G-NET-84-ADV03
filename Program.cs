@@ -93,5 +93,36 @@ public class Program
         Console.WriteLine($"Keys: {string.Join(", ", phoneBook.Keys)}");
         Console.WriteLine($"Values: {string.Join(", ", phoneBook.Values)}");
         #endregion
+
+        #region Question 4
+        HashSet<string> emails = new(StringComparer.OrdinalIgnoreCase);
+        emails.Add("ahmed@test.com");
+        emails.Add("AHMED@test.com");
+        emails.Add("sara@test.com");
+        emails.Add("Sara@Test.Com");
+
+        // The comparer is case-insensitive, so "AHMED@test.com" and "Sara@Test.Com" are
+        // treated as duplicates of the first two entries and are rejected - only 2
+        // unique emails actually get stored.
+        Console.WriteLine($"Unique email count: {emails.Count}");
+
+        HashSet<int> setA = new() { 1, 2, 3, 4, 5 };
+        HashSet<int> setB = new() { 4, 5, 6, 7, 8 };
+
+        HashSet<int> unionResult = new(setA);
+        unionResult.UnionWith(setB);
+        Console.WriteLine($"UnionWith: {string.Join(", ", unionResult)}");
+
+        HashSet<int> intersectResult = new(setA);
+        intersectResult.IntersectWith(setB);
+        Console.WriteLine($"IntersectWith: {string.Join(", ", intersectResult)}");
+
+        HashSet<int> exceptResult = new(setA);
+        exceptResult.ExceptWith(setB);
+        Console.WriteLine($"ExceptWith: {string.Join(", ", exceptResult)}");
+
+        HashSet<int> subsetCheck = new() { 1, 2 };
+        Console.WriteLine($"{{1,2}} is subset of Set A: {subsetCheck.IsSubsetOf(setA)}");
+        #endregion
     }
 }
