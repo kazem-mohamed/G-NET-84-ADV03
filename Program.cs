@@ -1,2 +1,32 @@
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        #region Question 1
+        List<int> grades = new() { 85, 92, 78, 95, 88, 70, 100, 65 };
+
+        Console.WriteLine($"Grades: {string.Join(", ", grades)}");
+        Console.WriteLine($"Count: {grades.Count}");
+        Console.WriteLine($"First: {grades[0]}");
+        Console.WriteLine($"Last: {grades[^1]}");
+
+        grades.Sort();
+        Console.WriteLine($"Sorted Grades: {string.Join(", ", grades)}");
+
+        int firstAbove90 = grades.Find(g => g > 90);
+        Console.WriteLine($"First grade above 90: {firstAbove90}");
+
+        List<int> failingGrades = grades.FindAll(g => g < 75);
+        Console.WriteLine($"Failing grades (below 75): {string.Join(", ", failingGrades)}");
+
+        grades.RemoveAll(g => g < 75);
+        Console.WriteLine($"Grades after removing failing grades: {string.Join(", ", grades)}");
+
+        bool hasPerfectScore = grades.Contains(100);
+        Console.WriteLine($"Any grade equals 100: {hasPerfectScore}");
+
+        List<string> gradeLabels = grades.ConvertAll(g => $"Grade: {g}");
+        Console.WriteLine($"Grade labels: {string.Join(", ", gradeLabels)}");
+        #endregion
+    }
+}
