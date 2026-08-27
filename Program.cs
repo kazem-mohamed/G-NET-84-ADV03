@@ -59,5 +59,39 @@ public class Program
             Console.WriteLine($"{entry.Key} - {entry.Value}");
         }
         #endregion
+
+        #region Question 3
+        Dictionary<string, string> phoneBook = new()
+        {
+            { "Ahmed", "010-1111-1111" },
+            { "Sara", "010-2222-2222" },
+            { "Ali", "010-3333-3333" },
+            { "Mona", "010-4444-4444" },
+        };
+
+        phoneBook["Omar"] = "010-5555-5555";
+        Console.WriteLine("Added contact 'Omar' using [] syntax.");
+
+        try
+        {
+            phoneBook.Add("Ahmed", "010-9999-9999");
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine($"Error adding duplicate with .Add(): {ex.Message}");
+        }
+
+        bool addedDuplicate = phoneBook.TryAdd("Sara", "010-8888-8888");
+        Console.WriteLine($"TryAdd duplicate 'Sara' succeeded: {addedDuplicate}");
+
+        bool foundMissing = phoneBook.TryGetValue("John", out var johnPhone);
+        Console.WriteLine($"Searching for 'John': {(foundMissing ? johnPhone : "Not found")}");
+
+        string contactWithFallback = phoneBook.GetValueOrDefault("Layla", "Not Found");
+        Console.WriteLine($"Contact 'Layla': {contactWithFallback}");
+
+        Console.WriteLine($"Keys: {string.Join(", ", phoneBook.Keys)}");
+        Console.WriteLine($"Values: {string.Join(", ", phoneBook.Values)}");
+        #endregion
     }
 }
